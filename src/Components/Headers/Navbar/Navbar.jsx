@@ -1,9 +1,11 @@
 import { useState } from "react";
 import logo from "../../Image/LibraryPulse.png";
-import { Link, NavLink } from "react-router-dom";
+import {NavLink } from "react-router-dom";
+import Authentication from "./Authentication";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
 
   const navLink = (
     <>
@@ -78,10 +80,8 @@ const Navbar = () => {
            {navLink}
           </div>
         </div>
-        <div>
-          <button className="inline-flex items-center bg-[#f3701d] rounded-md border-0 text-white btn hover:text-black font-semibold">
-            <Link to="/login">Login</Link>
-          </button>
+        <div className="mt-4 lg:mt-0">
+          <Authentication></Authentication>
         </div>
       </div>
     </nav>

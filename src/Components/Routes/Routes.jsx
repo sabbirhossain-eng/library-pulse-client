@@ -5,6 +5,8 @@ import ErrorElement from "../ErrorElement/ErrorElement";
 import AddBook from "../Pages/AddBook/AddBook";
 import AllBooks from "../Pages/AllBooks/AllBooks";
 import BorrowedBooks from "../Pages/BorrowedBooks/BorrowedBooks";
+import Login from "../Pages/Login/Login";
+import Registration from "../Pages/Login/Registration";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
         {
             path: '/borrowedBooks',
             element: <BorrowedBooks></BorrowedBooks>
+        },
+        {
+            path: '/login',
+            element: <Login></Login>
+        },
+        {
+          path: '/registration',
+          element: <Registration></Registration>
         }
       ]
     },
