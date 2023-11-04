@@ -1,6 +1,6 @@
 import { useState } from "react";
 import logo from "../../Image/LibraryPulse.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,32 +8,32 @@ const Navbar = () => {
   const navLink = (
     <>
       <NavLink
-        className={({ isActive, isPending }) =>
-          isPending ? "bg-[#B2BEB5] p-2 rounded-md font-semibold" : isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : ""
+        className={({ isActive }) =>
+          isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : "bg-orange-100 p-2 rounded-md font-semibold"
         }
         to="/"
       >
         Home
       </NavLink>
       <NavLink
-        className={({ isActive, isPending }) =>
-          isPending ? "bg-[#B2BEB5] p-2 rounded-md font-semibold" : isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : ""
+        className={({ isActive }) =>
+          isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : "bg-orange-100 p-2 rounded-md font-semibold"
         }
         to="/addBook"
       >
         Add Book
       </NavLink>
       <NavLink
-        className={({ isActive, isPending }) =>
-          isPending ? "bg-[#B2BEB5] p-2 rounded-md font-semibold" : isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : ""
+        className={({ isActive }) =>
+          isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : "bg-orange-100 p-2 rounded-md font-semibold"
         }
         to="/allBooks"
       >
         All Books
       </NavLink>
       <NavLink
-        className={({ isActive, isPending }) =>
-          isPending ? "bg-[#B2BEB5] p-2 rounded-md font-semibold" : isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : ""
+        className={({ isActive }) =>
+          isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : "bg-orange-100 p-2 rounded-md font-semibold"
         }
         to="/borrowedBooks"
       >
@@ -74,13 +74,13 @@ const Navbar = () => {
         }`}
       >
         <div className="text-sm lg:flex-grow">
-          <div className="block mt-4 lg:inline-block lg:mt-0 text-white-200 mr-4 space-x-4">
+          <div className="flex flex-col mt-4 lg:inline-block lg:mt-0 text-white-200 space-y-4 w-1/3 lg:w-auto text-center lg:space-x-4">
            {navLink}
           </div>
         </div>
         <div>
-          <button className="inline-flex items-center bg-amber-500 border-0 py-2 px-4 text-white">
-            Click Me
+          <button className="inline-flex items-center bg-[#f3701d] rounded-md border-0 text-white btn hover:text-black font-semibold">
+            <Link to="/login">Login</Link>
           </button>
         </div>
       </div>
