@@ -1,93 +1,91 @@
+import { useState } from "react";
+import logo from "../../Image/LibraryPulse.png";
+import { NavLink } from "react-router-dom";
+
 const Navbar = () => {
-    return (
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify between mx-auto p-4">
-          <a href="https://flowbite.com/" className="flex items-center">
-            <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              className="h-8 mr-3"
-              alt="Flowbite Logo"
-            />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Flowbite
-            </span>
-          </a>
-          <div className="flex md:order-2">
-            <button
-              type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Get started
-            </button>
-            <button
-              data-collapse-toggle="navbar-cta"
-              type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover-bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark-text-gray-400 dark:hover-bg-gray-700 dark:focus:ring-gray-600"
-              aria-controls="navbar-cta"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 1h15M1 7h15M1 13h15"
-                />
-              </svg>
-            </button>
-          </div>
-          <div
-            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-            id="navbar-cta"
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navLink = (
+    <>
+      <NavLink
+        className={({ isActive, isPending }) =>
+          isPending ? "bg-[#B2BEB5] p-2 rounded-md font-semibold" : isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : ""
+        }
+        to="/"
+      >
+        Home
+      </NavLink>
+      <NavLink
+        className={({ isActive, isPending }) =>
+          isPending ? "bg-[#B2BEB5] p-2 rounded-md font-semibold" : isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : ""
+        }
+        to="/addBook"
+      >
+        Add Book
+      </NavLink>
+      <NavLink
+        className={({ isActive, isPending }) =>
+          isPending ? "bg-[#B2BEB5] p-2 rounded-md font-semibold" : isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : ""
+        }
+        to="/allBooks"
+      >
+        All Books
+      </NavLink>
+      <NavLink
+        className={({ isActive, isPending }) =>
+          isPending ? "bg-[#B2BEB5] p-2 rounded-md font-semibold" : isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : ""
+        }
+        to="/borrowedBooks"
+      >
+        Borrowed Books
+      </NavLink>
+    </>
+  );
+
+  return (
+    <nav className="flex items-center justify-between flex-wrap p-6">
+      <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-72">
+        <img src={logo} className="w-100 h-10 mr-2" alt="Logo" />
+      </div>
+      <div className="block lg:hidden">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex items-center px-3 py-2 rounded text-black-500 hover:text-black-400"
+        >
+          <svg
+            className={`fill-current h-3 w-3 ${isOpen ? "hidden" : "block"}`}
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md-space-x-8 md:mt-0 md-border-0 md-bg-white dark-bg-gray-800 md-dark-bg-gray-900 dark-border-gray-700">
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md-bg-transparent md-text-blue-700 md-p-0 md-dark-text-blue-500"
-                  aria-current="page"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover-bg-gray-100 md-hover-bg-transparent md-hover-text-blue-700 md-p-0 md-dark-hover-text-blue-500 dark-text-white dark-hover-bg-gray-700 dark-hover-text-white md-dark-hover-bg-transparent dark-border-gray-700"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover-bg-gray-100 md-hover-bg-transparent md-hover-text-blue-700 md-p-0 md-dark-hover-text-blue-500 dark-text-white dark-hover-bg-gray-700 dark-hover-text-white md-dark-hover-bg-transparent dark-border-gray-700"
-                >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover-bg-gray-100 md-hover-bg-transparent md-hover-text-blue-700 md-p-0 md-dark-hover-text-blue-500 dark-text-white dark-hover-bg-gray-700 dark-hover-text-white md-dark-hover-bg-transparent dark-border-gray-700"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          </svg>
+          <svg
+            className={`fill-current h-3 w-3 ${isOpen ? "block" : "hidden"}`}
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+          </svg>
+        </button>
+      </div>
+      <div
+        className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${
+          isOpen ? "block" : "hidden"
+        }`}
+      >
+        <div className="text-sm lg:flex-grow">
+          <div className="block mt-4 lg:inline-block lg:mt-0 text-white-200 mr-4 space-x-4">
+           {navLink}
           </div>
         </div>
-      </nav>
-    );
-  };
-  
-  export default Navbar;
-  
+        <div>
+          <button className="inline-flex items-center bg-amber-500 border-0 py-2 px-4 text-white">
+            Click Me
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
