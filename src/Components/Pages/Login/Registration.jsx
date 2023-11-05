@@ -11,41 +11,40 @@ const Registration = () => {
   const { userCreate, googleCreateUser, user } = useAuth();
   const navigate = useNavigate();
 
-  const handleRegistration = (e) => {
+  const handleRegistration = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const url = form.url.value;
     const email = form.email.value;
     const password = form.password.value;
-
-    const newUser = { name, url, email, password };
-
+  
     if (password.length < 6) {
       toast("Password should be at least 6 characters or longer");
       return;
-    } else if (!/[A-Z]/.test(password)) {
+    }
+  
+    if (!/[A-Z]/.test(password)) {
       toast("Your password should have at least one capital letter");
       return;
-    } else if (!/[!"#$%&'()*+,-./:;<>=?@[\]^_`|{}~]/.test(password)) {
+    }
+  
+    if (!/[!"#$%&'()*+,-./:;<>=?@[\]^_`|{}~]/.test(password)) {
       toast("Your password should have at least one special character");
       return;
     }
-
-    userCreate(newUser)
-      .then((result) => {
-        console.log(result.user);
-        if (result.user) {
-          toast("Your Registration Success!!");
-          navigate("/login");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        const errorMessage = error.message;
-        toast(errorMessage);
-      });
+  
+    try {
+      await userCreate(name, url, email, password);
+      toast("Registration Successful!");
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+      const errorMessage = error.message;
+      toast(errorMessage);
+    }
   };
+  
   const handleLoading = () => {
     if (!user) {
       return redirect("/login");
