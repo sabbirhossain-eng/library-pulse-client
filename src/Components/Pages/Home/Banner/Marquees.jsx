@@ -8,16 +8,16 @@ const Marquees = () => {
         Our Book Items
       </button>
       <Marquee pauseOnHover={true} speed={100}>
-        <Link className="mr-12" to="/biographies">
+        <Link className="mr-12" to="/Biographies">
           Biographies
         </Link>
-        <Link className="mr-12" to="/history">
+        <Link className="mr-12" to="/History">
           History
         </Link>
-        <Link className="mr-12" to="/religion">
+        <Link className="mr-12" to="/Religion">
           Religion
         </Link>
-        <Link className="mr-12" to="/business">
+        <Link className="mr-12" to="/Business">
           Business
         </Link>
       </Marquee>

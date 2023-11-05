@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { AiOutlineCaretRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const Categories = () => {
@@ -12,24 +11,30 @@ const Categories = () => {
   }, []);
 
   return (
-    <div className="grid  lg:grid-cols-4 py-20 gap-4">
+    <div className="grid  lg:grid-cols-4 py-20 place-items-center gap-4">
       {categories.map((category) => (
-        <div key={category.id} className="w-64 mx-auto  rounded-lg  dark:bg-gray-800 dark:border-gray-700">
-          <div className="flex justify-center">
-            <img className="rounded-t-lg w-1/2" src={category.image} alt="" />
-          </div>
-          <div className="p-5">
-            <a href="#">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {category.name}
-              </h5>
-            </a>
-            <Link className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#f3701d] rounded-lg hover:bg-[#000080] focus:ring-4 focus:outline-none focus:ring-[#f3701d] dark:bg-[#f3701d] dark:hover-bg-blue-700 dark:focus:ring-[#f3701d]">
-              See Books
-              <p className="font-bold ml-2"><AiOutlineCaretRight /></p>
+        <div 
+        key={category.id}
+        className="relative flex flex-col text-gray-700 bg-white shadow-md w-96 lg:w-64 rounded-xl bg-clip-border">
+        <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white h-96 lg:h-64 rounded-xl bg-clip-border">
+          <img
+            src={category.image}
+            className="object-cover w-full h-full"
+          />
+        </div>
+        <div className="p-6">
+          <div className="flex items-center justify-between mb-2">
+            <p className="block font-sans text-xl antialiased font-bold leading-relaxed text-[#f3701d]">
+              {category.name}
+            </p>
+            <Link 
+            to={`/${category.name}`}
+            className="block font-sans text-base antialiased font-medium leading-relaxed text-white hover:text-[#000080] bg-[#f3701d] hover:bg-slate-100 px-2 rounded-lg ">
+            See Books
             </Link>
           </div>
         </div>
+      </div>
       ))}
     </div>
   );
