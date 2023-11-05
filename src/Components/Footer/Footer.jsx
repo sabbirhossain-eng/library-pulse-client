@@ -1,7 +1,7 @@
 import logo from '../Image/LibraryPulse.png';
 const Footer = () => {
   return (
-    <div className="relative bg-gradient-to-r from-[#f3701d] to-[#524d4a]">
+    <div className="relative bg-gradient-to-r from-[#f3701d] to-[#524d4a] mt-10">
       <div className="absolute inset-x-0 bottom-0">
         <svg
           viewBox="0 0 224 12"

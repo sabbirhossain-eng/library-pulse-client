@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "img": "https://i.ibb.co/ch6Nc2K/aaron-burden-9zs-HNt5-Opq-E-unsplash.jpg",
+      "title": "One-Hour Reads for Daylight Savings",
+      "description": "Daylight saving time ends on November 5. Spend your spare hour with a good book! These short reads can be enjoyed in a single sitting."
+    },
+    {
+      "id": 2,
+      "img": "https://i.ibb.co/d0yZNw6/image.png",
+      "title": "Fiction and Nonfiction to Read If You Love 'Lessons in Chemistry",
+      "description": "It's hard to replicate the magic of this charming novel, but one of these books may be just the ticket for your next read."
+    },
+    {
+      "id": 3,
+      "img": "https://i.ibb.co/MpjkdY1/image.png",
+      "title": "A History of the Site of the Stavros Niarchos Foundation Library",
+      "description": "A fascinating history of the site of the The New York Public Library's Stavros Niarchos Foundation Library."
+    },
+    {
+      "id": 4,
+      "img": "https://i.ibb.co/dm90MwK/image.png",
+      "title": "Bewitching Romance Books for Spooky Season",
+      "description": "If you're down for magic, curses, and other witchy vibes (not to mention vampires and ghosts), give one of these paranormal rom coms a try."
+    }
+  ]
+  
