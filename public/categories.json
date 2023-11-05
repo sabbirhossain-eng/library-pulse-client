@@ -1,0 +1,22 @@
+[
+    {
+        "id": 101,
+        "name": "Biographies",
+        "image": "https://i.ibb.co/09QWhKx/Social-biography-bro.png"
+    },
+    {
+        "id": 202,
+        "name": "History",
+        "image": "https://i.ibb.co/d6jhpFz/Globalization-amico.png"
+    },
+    {
+        "id": 303,
+        "name": "Religion",
+        "image": "https://i.ibb.co/0qDD4QS/islamic-new-year-bro.png"
+    },
+    {
+        "id": 404,
+        "name": "Business",
+        "image": "https://i.ibb.co/VLPp4Kh/Business-Plan-pana.png"
+    }
+]

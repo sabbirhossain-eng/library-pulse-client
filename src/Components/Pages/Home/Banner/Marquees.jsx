@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Marquees = () => {
   return (
     <div className="flex">
-      <button className="btn bg-[#f3701d] border-[#f3701d] text-white hover:text-black capitalize">
+      <button className="btn bg-white border-[#f3701d] text-[#f3701d] hover:text-black capitalize">
         Our Book Items
       </button>
       <Marquee pauseOnHover={true} speed={100}>
