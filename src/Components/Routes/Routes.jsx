@@ -12,8 +12,10 @@ import Biographies from "../Pages/CategoriesPage/Biographies";
 import History from "../Pages/CategoriesPage/History";
 import Religion from "../Pages/CategoriesPage/Religion";
 import PrivateRoute from "./PrivateRoute";
+import Details from "../Pages/CategoriesPage/Details/Details";
 
 const router = createBrowserRouter([
+ 
   {
     path: "/",
     element: <Root></Root>,
@@ -50,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: '/details/:id',
+        element: <Details></Details>
       },
       {
         path: "/registration",
