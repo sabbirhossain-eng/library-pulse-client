@@ -37,7 +37,7 @@ const Registration = () => {
     try {
       await userCreate(name, url, email, password);
       toast("Registration Successful!");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error(error);
       const errorMessage = error.message;
@@ -55,8 +55,11 @@ const Registration = () => {
   const handleGoogle = () => {
     googleCreateUser()
       .then((result) => {
-        console.log(result.user);
         toast("Your Registration Success!!");
+        if (result.user) {
+          toast("Login Success!!");
+          navigate(location?.state ? location.state : "/");
+        }
       })
       .catch((error) => {
         console.error(error);

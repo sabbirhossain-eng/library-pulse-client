@@ -51,7 +51,7 @@ const Login = () => {
         navigate(location?.state ? location.state : "/");
         if (result.user) {
           toast("Login Success!!");
-          navigate("/");
+          navigate(location?.state ? location.state : "/");
         }
       })
       .catch((error) => {

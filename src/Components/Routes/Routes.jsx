@@ -15,7 +15,6 @@ import PrivateRoute from "./PrivateRoute";
 import Details from "../Pages/CategoriesPage/Details/Details";
 
 const router = createBrowserRouter([
- 
   {
     path: "/",
     element: <Root></Root>,
@@ -54,8 +53,12 @@ const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
-        path: '/details/:id',
-        element: <Details></Details>
+        path: "/details/:id",
+        element: (
+          <PrivateRoute>
+            <Details></Details>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/registration",
