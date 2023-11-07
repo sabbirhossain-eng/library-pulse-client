@@ -10,6 +10,8 @@ import {
   Input,
 } from "@material-tailwind/react";
 import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import './Details.css';
 
 const Details = () => {
   const [book, setBooks] = useState([]);
@@ -18,7 +20,6 @@ const Details = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const { user } = useAuth();
-
   const [formData, setFormData] = useState({
     email: user?.email || "",
     name: user?.displayName || "",
@@ -33,6 +34,10 @@ const Details = () => {
 
   // modal confirm
 
+  const handleOkay = () =>{
+      console.log('okay confirm')
+  }
+
     const handleBorrow = (e) => {
       e.preventDefault();
       const newBorrow = {
@@ -40,7 +45,38 @@ const Details = () => {
         name: formData.name,
         date: formData.date,
       };
-      console.log(newBorrow);
+      const hookUrl = `${apiUrl}/borrow`;
+
+      fetch(hookUrl, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newBorrow),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.insertedId) {
+            Swal.fire({
+              title: "Success!",
+              text: "Book Borrow Successfully",
+              icon: "success",
+              confirmButtonText: "OKay",
+              customClass:{
+                container: 'custom-swal-modal',
+              }
+              
+            })
+            .then(result => {
+              if(result.isConfirmed){
+                handleOkay();
+              }
+            })
+          }
+        });
+       
+      
     };
 
   const handleChange = (e) => {
@@ -82,7 +118,9 @@ const Details = () => {
               Borrow
             </Button>
             <Dialog open={open} handler={handleOpen}>
-              <form onSubmit={handleBorrow} className="space-y-6">
+              <form onSubmit={handleBorrow} className="space-y-6"
+              style={{ zIndex: 1 }}
+              >
                 <DialogHeader>Please enter date of return</DialogHeader>
                 <DialogBody>
                   <div className="mb-6">
