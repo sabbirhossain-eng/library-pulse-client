@@ -17,7 +17,7 @@ const BorrowedBooks = () => {
     <div>
       <h2 className="text-2xl text-center font-bold text-[#f3701d]">Borrowed Books</h2>
       <hr className="p-[1px] bg-[#000080] mb-4" />
-      <div className="grid lg:grid-cols-3 gap-4">
+      <div className="grid lg:grid-cols-3 gap-4 place-items-center">
         {
         books.map((nBook) => (
           <BorrowedBooksCard 
