@@ -12,12 +12,21 @@ import "./Details.css";
 import { useState } from "react";
 import useApi from "../../../Hooks/useApi";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 
 const DetailsModal = ({ book }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const { user } = useAuth();
   const apiUrl = useApi();
+  const [updatedQuantity, setUpdatedQuantity] = useState(book.quantity);
+
+//   modal click
+const handleBorrowClick = () => {
+    if (book.quantity > 0) {
+      handleOpen();
+    }
+  };
 
   // today date
   const date = new Date();
@@ -35,9 +44,32 @@ const DetailsModal = ({ book }) => {
 
   // modal confirm
 
-  const handleOkay = () => {
-    console.log("okay confirm");
+  useEffect(() => {
+    if (updatedQuantity !== book.quantity) {
+      fetch(`${apiUrl}/book/${book._id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ quantity: updatedQuantity }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUpdatedQuantity(data.quantity);
+        })
+        .catch((error) => {
+          console.error("Error updating quantity:", error);
+        });
+    }
+  }, [updatedQuantity, book.quantity, apiUrl]);
+
+  const handleConfirm = () => {
+    if (updatedQuantity > 0) {
+      const newQuantity = updatedQuantity - 1;
+      setUpdatedQuantity(newQuantity);
+    }
   };
+
 
   const handleBorrow = (e) => {
     e.preventDefault();
@@ -68,10 +100,6 @@ const DetailsModal = ({ book }) => {
             customClass: {
               container: "custom-swal-modal",
             },
-          }).then((result) => {
-            if (result.isConfirmed) {
-              handleOkay();
-            }
           });
         }
       });
@@ -85,8 +113,11 @@ const DetailsModal = ({ book }) => {
   return (
     <div>
       <Button
-        onClick={handleOpen}
-        className="block select-none rounded-lg bg-[#f3701d] py-3 px-6 text-center align-middle font-sans text-lg capitalize font-bold text-white transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        onClick={handleBorrowClick}
+        disabled={book.quantity === 0}
+        className={`block select-none rounded-lg py-3 px-6 text-center align-middle font-sans text-lg capitalize font-bold text-white transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 ${
+          book.quantity === 0 ? 'bg-gray-400' : 'bg-[#f3701d]'
+        }`}
       >
         Borrow
       </Button>
@@ -142,6 +173,7 @@ const DetailsModal = ({ book }) => {
               Cancel
             </Button>
             <Button
+              onClick={handleConfirm}
               className="block py-3 px-6 select-none rounded-lg bg-[#f3701d] text-center align-middle font-sans text-sm capitalize font-semibold text-white transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="submit"
             >

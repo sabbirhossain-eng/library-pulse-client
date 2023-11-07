@@ -10,12 +10,33 @@ import PropTypes from "prop-types";
 import { PiKeyReturnFill } from "react-icons/pi";
 import Swal from "sweetalert2";
 import useApi from "../../Hooks/useApi";
+import { useEffect, useState } from "react";
 
 const BorrowedBooksCard = ({ books, setBooks, nBook }) => {
   const { _id, newBorrow, book } = nBook;
   const { url, name, category } = book;
   const { date, returnDate } = newBorrow;
   const apiUrl = useApi();
+  const [updatedQuantity, setUpdatedQuantity] = useState(nBook.quantity);
+
+  useEffect(() => {
+    if (updatedQuantity !== nBook.quantity) {
+      fetch(`${apiUrl}/book/${nBook._id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ quantity: updatedQuantity }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUpdatedQuantity(data.quantity);
+        })
+        .catch((error) => {
+          console.error("Error updating quantity:", error);
+        });
+    }
+  }, [updatedQuantity, nBook.quantity, apiUrl]);
 
   const handleReturn = (_id) => {
     console.log(_id);
@@ -29,14 +50,13 @@ const BorrowedBooksCard = ({ books, setBooks, nBook }) => {
       confirmButtonText: "Yes, return it !",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `${apiUrl}/borrow/${_id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetch(`${apiUrl}/borrow/${_id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
+            const newQuantity = updatedQuantity + 1;
+            setUpdatedQuantity(newQuantity);
             console.log(data);
             if (data.deletedCount > 0) {
               Swal.fire("Return!", "Your Book has been returned.", "success");

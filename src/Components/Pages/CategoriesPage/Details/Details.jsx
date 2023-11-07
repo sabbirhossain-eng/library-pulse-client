@@ -33,13 +33,18 @@ const Details = () => {
               {book.author}
             </p>
           </div>
+          <p className="block font-sans text-2xl antialiased font-bold leading-relaxed text-[#f3701d] mb-2">
+              <span className="text-gray-600 text-xl">Quantity: </span>
+              {book?.quantity || '0'}
+            </p>
           <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 opacity-75">
             {book.description}
           </p>
         </div>
         <div className="p-6 pt-0 flex justify-around">
           <button
-            className="block select-none rounded-lg bg-[#f3701d] py-3 px-6 text-center align-middle font-sans text-lg capitalize font-bold text-white transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            className="block select-none rounded-lg bg-[#f3701d]
+           py-3 px-6 text-center align-middle font-sans text-lg capitalize font-bold text-white transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button"
           >
             Read

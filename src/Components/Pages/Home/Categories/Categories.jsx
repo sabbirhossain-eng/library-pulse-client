@@ -15,7 +15,7 @@ const Categories = () => {
       {categories.map((category) => (
         <div 
         key={category.id}
-        className="relative flex flex-col text-gray-700 bg-white shadow-md w-96 lg:w-64 rounded-xl bg-clip-border">
+        className="relative flex flex-col text-gray-700 bg-white shadow-md w-96 lg:w-72 rounded-xl bg-clip-border">
         <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white h-96 lg:h-64 rounded-xl bg-clip-border">
           <img
             src={category.image}
