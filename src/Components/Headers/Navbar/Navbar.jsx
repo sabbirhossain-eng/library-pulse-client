@@ -19,7 +19,7 @@ const Navbar = () => {
         className={({ isActive }) =>
           isActive
             ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold"
-            : `bg-orange-100 p-2 rounded-md font-semibold ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`
+            : `text-black font-semibold ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`
         }
         to="/"
       >
@@ -29,7 +29,7 @@ const Navbar = () => {
         className={({ isActive }) =>
           isActive
             ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold"
-            : `bg-orange-100 p-2 rounded-md font-semibold ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`
+            : `text-black font-semibold ${darkMode ? "text-[#ffffff]" : "light-theme"}`
         }
         to="/addBook"
       >
@@ -39,7 +39,7 @@ const Navbar = () => {
         className={({ isActive }) =>
           isActive
             ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold"
-            : `bg-orange-100 p-2 rounded-md font-semibold ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`
+            : `text-black font-semibold ${darkMode ? "text-[#ffffff]" : "light-theme"}`
         }
         to="/allBooks"
       >
@@ -49,7 +49,7 @@ const Navbar = () => {
         className={({ isActive }) =>
           isActive
             ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold"
-            : `bg-orange-100 p-2 rounded-md font-semibold ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`
+            : `text-black font-semibold ${darkMode ? "text-[#ffffff]" : "light-theme"}`
         }
         to="/borrowedBooks"
       >
@@ -65,7 +65,9 @@ const Navbar = () => {
       }`}
     >
       <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-72">
-        <img src={logo} className="w-100 h-10 mr-2" alt="Logo" />
+        <img src={logo} className={`w-100 h-10 mr-2 ${
+        darkMode ? "bg-[#ffffff] rounded-lg" : "light-theme"
+      }`} alt="Logo" />
       </div>
 
       <div className="block lg:hidden">

@@ -1,6 +1,6 @@
 
 const useApi = () => {
-    const apiUrl = 'http://localhost:5000' ;
+    const apiUrl = 'https://library-management-system-server-three.vercel.app' ;
     
     return apiUrl;
 };
