@@ -3,7 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import { Link } from "react-router-dom";
 
 const Authentication = () => {
-  const { user, logOut } = useAuth();
+  const { user, logOut, darkMode } = useAuth();
   const [isOpen, setIsOpen] = useState(false)
 
   const handleLogOut = () => {
@@ -16,7 +16,7 @@ const Authentication = () => {
       {user ? (
         <div 
         style={{ zIndex: 1 }}
-        className="dropdown lg:dropdown-left ">
+        className={`dropdown lg:dropdown-left` } >
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
               {user?.photoURL ? (
@@ -31,9 +31,11 @@ const Authentication = () => {
           </label>
           <ul
             tabIndex={0}
-            className={`mt-3 z-1 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 space-y-3 ${
+            className={`${
+              darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"
+            } mt-3 z-1 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 space-y-3 ${
               isOpen ? "hidden" : "block"
-            }`}
+            } `}
           >
             <li>{user?.displayName && <p>Name: {user.displayName}</p>}</li>
             <li>{user?.email && <p>Email: {user.email}</p>}</li>
