@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const [loading, setLoading] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   const userCreate = async (name, url, email, password) => {
     return await createUserWithEmailAndPassword(auth, email, password).then(
@@ -58,14 +59,30 @@ const AuthProvider = ({ children }) => {
       unSubscribe();
     };
   }, []);
+  
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("darkMode");
+    if (savedTheme !== null) {
+      setDarkMode(savedTheme === "true");
+    }
+  }, []);
+
+  const updateTheme = (isDark) => {
+    localStorage.setItem("darkMode", isDark);
+    setDarkMode(isDark);
+  };
+
 
   const authInfo = {
     user,
     loading,
+    darkMode,
     userCreate,
     googleCreateUser,
     login,
     logOut,
+    updateTheme
   };
 
   return (

@@ -1,17 +1,25 @@
 import { useState } from "react";
 import logo from "../../Image/LibraryPulse.png";
-import {NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Authentication from "./Authentication";
+import ToggleButton from "react-toggle-button";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { darkMode, updateTheme } = useAuth();
 
+  const toggleDarkMode = () => {
+    updateTheme(!darkMode);
+  };
 
   const navLink = (
     <>
       <NavLink
         className={({ isActive }) =>
-          isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : "bg-orange-100 p-2 rounded-md font-semibold"
+          isActive
+            ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold"
+            : `bg-orange-100 p-2 rounded-md font-semibold ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`
         }
         to="/"
       >
@@ -19,7 +27,9 @@ const Navbar = () => {
       </NavLink>
       <NavLink
         className={({ isActive }) =>
-          isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : "bg-orange-100 p-2 rounded-md font-semibold"
+          isActive
+            ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold"
+            : `bg-orange-100 p-2 rounded-md font-semibold ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`
         }
         to="/addBook"
       >
@@ -27,7 +37,9 @@ const Navbar = () => {
       </NavLink>
       <NavLink
         className={({ isActive }) =>
-          isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : "bg-orange-100 p-2 rounded-md font-semibold"
+          isActive
+            ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold"
+            : `bg-orange-100 p-2 rounded-md font-semibold ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`
         }
         to="/allBooks"
       >
@@ -35,7 +47,9 @@ const Navbar = () => {
       </NavLink>
       <NavLink
         className={({ isActive }) =>
-          isActive ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold" : "bg-orange-100 p-2 rounded-md font-semibold"
+          isActive
+            ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold"
+            : `bg-orange-100 p-2 rounded-md font-semibold ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`
         }
         to="/borrowedBooks"
       >
@@ -45,10 +59,15 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="flex items-center justify-between flex-wrap p-6">
+    <nav
+      className={`flex items-center justify-between flex-wrap p-6 page-container ${
+        darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"
+      }`}
+    >
       <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-72">
         <img src={logo} className="w-100 h-10 mr-2" alt="Logo" />
       </div>
+
       <div className="block lg:hidden">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -77,8 +96,16 @@ const Navbar = () => {
       >
         <div className="text-sm lg:flex-grow">
           <div className="flex flex-col mt-4 lg:inline-block lg:mt-0 text-white-200 space-y-4 w-1/3 lg:w-auto text-center lg:space-x-4">
-           {navLink}
+            {navLink}
           </div>
+        </div>
+        <div className="mt-4 lg:mt-0 lg:mr-4">
+          <ToggleButton
+            inactiveLabel={"Light"}
+            activeLabel={"Dark"}
+            value={darkMode}
+            onToggle={toggleDarkMode}
+          />
         </div>
         <div className="mt-4 lg:mt-0">
           <Authentication></Authentication>

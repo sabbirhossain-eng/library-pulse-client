@@ -1,7 +1,10 @@
+import useAuth from '../Hooks/useAuth';
 import logo from '../Image/LibraryPulse.png';
 const Footer = () => {
+  const {darkMode} = useAuth();
+
   return (
-    <div className="relative bg-gradient-to-r from-[#f3701d] to-[#524d4a] mt-10">
+    <div className={`relative bg-gradient-to-r from-[#f3701d] to-[#f8853d] mt-1 ${darkMode ? "bg-gradient-to-r from-[#1f2023] to-[#1f2023] text-[#ffffff]" : "light-theme"}`}>
       <div className="absolute inset-x-0 bottom-0">
         <svg
           viewBox="0 0 224 12"
@@ -30,7 +33,7 @@ const Footer = () => {
               placeholder="Email"
               required=""
               type="text"
-              className="flex-grow w-full h-12 px-4 mb-3 text-white transition duration-200 border-2 border-transparent rounded appearance-none md:mr-2 md:mb-0 bg-deep-purple-900 focus:border-teal-accent-700 focus:outline-none focus:shadow-outline"
+              className="flex-grow w-full h-12 px-4 mb-3 text-[#f3701d] transition duration-200 border-2 border-transparent rounded appearance-none md:mr-2 md:mb-0 bg-white focus:border-teal-accent-700 focus:outline-none focus:shadow-outline"
             />
             <a
               href="/"

@@ -9,12 +9,13 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import useAuth from "../../Hooks/useAuth";
 
 const PopularContent = () => {
   const [popular, setPopular] = useState([]);
   const apiUrl = useApi();
   const [showAll, setShowAll] = useState(false);
-
+  const {darkMode} = useAuth();
   useEffect(() => {
     fetch(`${apiUrl}/book`)
       .then((res) => res.json())
@@ -30,7 +31,7 @@ const PopularContent = () => {
   };
 
   return (
-    <div className="lg:flex lg:justify-between space-y-4 lg:space-y-0 lg:flex-row-reverse mt-10">
+    <div className={`lg:flex lg:justify-between space-y-4 lg:space-y-0 lg:flex-row-reverse mt-10 ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`}>
     <div>
         <hr className="bg-[#f3701d] py-[2px]" />
         <h2 className="text-3xl font-semibold text-[#f3701d]">Popular Content</h2>
@@ -42,14 +43,16 @@ const PopularContent = () => {
           const blankStars = totalStars - activeStars;
 
           return (
-            <Card key={index} className="w-96">
+            <Card key={index} className={`w-96 ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`}>
               <List>
                 <ListItem>
                   <ListItemPrefix>
                     <Avatar variant="circular" alt="candice" src={book.url} />
                   </ListItemPrefix>
                   <div>
-                    <Typography variant="h6" color="blue-gray">
+                    <Typography variant="h6" color="blue-gray"
+                    className={`${darkMode ? " text-[#ffffff]" : "light-theme"}`}
+                    >
                       {book.name}
                     </Typography>
                     <Typography
@@ -90,9 +93,9 @@ const PopularContent = () => {
             </Card>
           );
         })}
-        <div className="flex justify-center">
+        <div className="flex justify-end">
           {!showAll && popular.length > 8 && (
-            <Button className="bg-[#f3701d]" onClick={toggleShowAll}>
+            <Button className={`bg-[#f3701d] ${darkMode ? "bg-[#ffffff] rounded-lg text-[#1f2023]" : "light-theme"}`} onClick={toggleShowAll}>
               See All
             </Button>
           )}
