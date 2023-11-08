@@ -13,6 +13,7 @@ import History from "../Pages/CategoriesPage/History";
 import Religion from "../Pages/CategoriesPage/Religion";
 import PrivateRoute from "./PrivateRoute";
 import Details from "../Pages/CategoriesPage/Details/Details";
+import UpdateBook from "../Pages/AllBooks/UpdateBook/UpdateBook";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             <AllBooks></AllBooks>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/update/:id",
+        element: <UpdateBook></UpdateBook>
       },
       {
         path: "/borrowedBooks",

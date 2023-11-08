@@ -12,14 +12,13 @@ import "./Details.css";
 import { useState } from "react";
 import useApi from "../../../Hooks/useApi";
 import PropTypes from "prop-types";
-import { useEffect } from "react";
 
-const DetailsModal = ({ book }) => {
+const DetailsModal = ({ book, setBook, id }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const { user } = useAuth();
   const apiUrl = useApi();
-  const [updatedQuantity, setUpdatedQuantity] = useState(book.quantity);
+ 
 
 //   modal click
 const handleBorrowClick = () => {
@@ -42,34 +41,7 @@ const handleBorrowClick = () => {
     returnDate: "",
   });
 
-  // modal confirm
-
-  useEffect(() => {
-    if (updatedQuantity !== book.quantity) {
-      fetch(`${apiUrl}/book/${book._id}`, {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ quantity: updatedQuantity }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setUpdatedQuantity(data.quantity);
-        })
-        .catch((error) => {
-          console.error("Error updating quantity:", error);
-        });
-    }
-  }, [updatedQuantity, book.quantity, apiUrl]);
-
-  const handleConfirm = () => {
-    if (updatedQuantity > 0) {
-      const newQuantity = updatedQuantity - 1;
-      setUpdatedQuantity(newQuantity);
-    }
-  };
-
+ 
 
   const handleBorrow = (e) => {
     e.preventDefault();
@@ -109,6 +81,28 @@ const handleBorrowClick = () => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
+
+   // modal confirm
+   const handleConfirm = () => {
+    const updatedBook = { ...book, quantity: book.quantity - 1 };
+    setBook(updatedBook);
+
+    fetch(`${apiUrl}/book/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ quantity: updatedBook.quantity }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Quantity updated successfully:", data);
+      })
+      .catch((error) => {
+        console.error("Error updating quantity:", error);
+      });
+  };
+
 
   return (
     <div>
@@ -187,5 +181,7 @@ const handleBorrowClick = () => {
 };
 DetailsModal.propTypes = {
   book: PropTypes.node,
+  setBook: PropTypes.node,
+  id: PropTypes.node,
 };
 export default DetailsModal;

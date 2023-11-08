@@ -49,7 +49,7 @@ const Details = () => {
           >
             Read
           </button>
-          <DetailsModal book={book}></DetailsModal>
+          <DetailsModal book={book} setBook={setBook} id={id}></DetailsModal>
         </div>
       </div>
     </div>

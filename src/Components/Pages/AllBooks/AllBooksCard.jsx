@@ -7,9 +7,10 @@ import {
     CardFooter,
   } from "@material-tailwind/react";
   import PropTypes from "prop-types";
+  import { Link } from "react-router-dom";
 
 const AllBooksCard = ({ book }) => {
-  const { url, name, author, category, quantity, rating } = book;
+  const {_id, url, name, author, category, quantity, rating } = book;
 
   const totalStars = 5;
   const activeStars = parseInt(rating, 10);
@@ -85,11 +86,13 @@ const AllBooksCard = ({ book }) => {
         </div>
       </CardBody>
       <CardFooter className="pt-0 flex justify-center">
+        <Link to={`/update/${_id}`}>
         <Button
           className="flex btn bt-sm items-center gap-1 capitalize text-lg bg-[#f3701d] hover:text-[#000080]"
         >
           Update
         </Button>
+        </Link>
       </CardFooter>
     </Card>
   );

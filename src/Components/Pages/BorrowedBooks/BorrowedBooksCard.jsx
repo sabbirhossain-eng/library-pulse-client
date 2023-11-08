@@ -10,44 +10,24 @@ import PropTypes from "prop-types";
 import { PiKeyReturnFill } from "react-icons/pi";
 import Swal from "sweetalert2";
 import useApi from "../../Hooks/useApi";
-import { useEffect, useState } from "react";
 
 const BorrowedBooksCard = ({ books, setBooks, nBook }) => {
   const { _id, newBorrow, book } = nBook;
   const { url, name, category } = book;
   const { date, returnDate } = newBorrow;
   const apiUrl = useApi();
-  const [updatedQuantity, setUpdatedQuantity] = useState(nBook.quantity);
-
-  useEffect(() => {
-    if (updatedQuantity !== nBook.quantity) {
-      fetch(`${apiUrl}/book/${nBook._id}`, {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ quantity: updatedQuantity }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setUpdatedQuantity(data.quantity);
-        })
-        .catch((error) => {
-          console.error("Error updating quantity:", error);
-        });
-    }
-  }, [updatedQuantity, nBook.quantity, apiUrl]);
+  
 
   const handleReturn = (_id) => {
     console.log(_id);
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to return this book !",
+      text: "You won't be able to return this book!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, return it !",
+      confirmButtonText: "Yes, return it!",
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`${apiUrl}/borrow/${_id}`, {
@@ -55,18 +35,31 @@ const BorrowedBooksCard = ({ books, setBooks, nBook }) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            const newQuantity = updatedQuantity + 1;
-            setUpdatedQuantity(newQuantity);
             console.log(data);
             if (data.deletedCount > 0) {
+              fetch(`${apiUrl}/book/${book._id}`, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ quantity: book.quantity + 1 }),
+              })
+                .then((res) => res.json())
+                .then((updatedBook) => {
+                  console.log("Book quantity updated:", updatedBook);
+                  const updatedBooks = [...books, updatedBook];
+                  setBooks(updatedBooks);
+                })
+                .catch((error) => {
+                  console.error("Error updating book quantity:", error);
+                });
               Swal.fire("Return!", "Your Book has been returned.", "success");
-              const remaining = books.filter((book) => book._id !== _id);
-              setBooks(remaining);
             }
           });
       }
     });
   };
+  
 
   return (
     <Card className="w-96">
