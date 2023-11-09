@@ -16,8 +16,7 @@ const Categories = () => {
       {categories.map((category) => (
         <div 
         key={category.id}
-        className={`relative flex flex-col text-gray-700 bg-white shadow-md w-96 lg:w-72 rounded-xl bg-clip-border ${
-          darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"
+        className={`relative flex flex-col text-gray-700 bg-white shadow-md w-96 lg:w-72 rounded-xl bg-clip-border ${ darkMode ? "bg-[#1f2023]" : "light-theme"
         }`}>
         <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white h-96 lg:h-64 rounded-xl bg-clip-border">
           <img
@@ -27,7 +26,7 @@ const Categories = () => {
         </div>
         <div className="p-6">
           <div className="flex items-center justify-between mb-2">
-            <p className={`block font-sans text-xl antialiased font-bold leading-relaxed text-[#f3701d] ${darkMode ? " text-[#ffffff]" : "light-theme"}`}>
+            <p className={`block font-sans text-xl antialiased font-bold leading-relaxed text-[#f3701d] ${darkMode ? " text-[#f3701d]" : "light-theme"}`}>
               {category.name}
             </p>
             <Link 

@@ -19,7 +19,7 @@ const Navbar = () => {
         className={({ isActive }) =>
           isActive
             ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold"
-            : `text-black font-semibold ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`
+            : `text-[#f3701d] font-semibold ${darkMode ? "bg-[#1f2023] rounded-lg text-[#ffffff]" : "light-theme"}`
         }
         to="/"
       >
@@ -29,7 +29,7 @@ const Navbar = () => {
         className={({ isActive }) =>
           isActive
             ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold"
-            : `text-black font-semibold ${darkMode ? "text-[#ffffff]" : "light-theme"}`
+            : `text-[#f3701d] font-semibold ${darkMode ? "text-[#ffffff]" : "light-theme"}`
         }
         to="/addBook"
       >
@@ -39,7 +39,7 @@ const Navbar = () => {
         className={({ isActive }) =>
           isActive
             ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold"
-            : `text-black font-semibold ${darkMode ? "text-[#ffffff]" : "light-theme"}`
+            : `text-[#f3701d] font-semibold ${darkMode ? "text-[#ffffff]" : "light-theme"}`
         }
         to="/allBooks"
       >
@@ -49,7 +49,7 @@ const Navbar = () => {
         className={({ isActive }) =>
           isActive
             ? "bg-[#f3701d] p-2 rounded-md text-white font-semibold"
-            : `text-black font-semibold ${darkMode ? "text-[#ffffff]" : "light-theme"}`
+            : `text-[#f3701d] font-semibold ${darkMode ? "text-[#ffffff]" : "light-theme"}`
         }
         to="/borrowedBooks"
       >
