@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const Authentication = () => {
   const { user, logOut, darkMode } = useAuth();
   const [isOpen, setIsOpen] = useState(false)
-
   const handleLogOut = () => {
     logOut()
     .then()
