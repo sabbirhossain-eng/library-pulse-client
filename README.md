@@ -1,7 +1,7 @@
 # Library Pules
 Library Management System
 
-- [@website live link](https://library-pulse.web.app/)
+- [@website live link](https://library-pulse.web.app)
 
 - Some of the features of the project are mentioned below
 
