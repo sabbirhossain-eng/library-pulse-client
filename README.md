@@ -3,6 +3,12 @@ Library Management System
 
 - [@website live link](https://library-pulse.web.app)
 
+### Unique Feature:  
+- Dark-light mode
+- Marquee Category-related marquee is used in the banner section
+- Category-wise book list is shown. Added dark light mode theme and popular content section
+
+
 - Some of the features of the project are mentioned below
 
 - Added 4 pages to navbar.
