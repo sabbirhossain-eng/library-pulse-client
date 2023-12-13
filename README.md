@@ -9,7 +9,7 @@ Library Management System
 - Category-wise book list is shown. Added dark light mode theme and popular content section
 
 
-- Some of the features of the project are mentioned below
+###Some of the features of the project are mentioned below
 
 - Added 4 pages to navbar.
 Home page, Add Book, All books and Borrowed Books
